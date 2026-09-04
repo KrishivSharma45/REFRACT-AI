@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Flet build/runtime cache
+.flet/
+
+# Editor / assistant session data
+.claude/
+.vscode/
+.idea/
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# REFRACT local analysis history — personal data generated at runtime,
+# not project source. Delete this line if you'd rather ship sample history.
+refract_history.json
