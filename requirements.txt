@@ -1,0 +1,5 @@
+flet
+pypdf
+python-docx
+SpeechRecognition
+PyAudio
