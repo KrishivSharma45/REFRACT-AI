@@ -214,6 +214,15 @@ REFRACT-AI/
 
 ---
 
+## Author
+
+**Krishiv Sharma**
+B.Tech Computer Science (Cyber Security) · SRM Institute of Science and Technology, Kattankulathur
+
+[GitHub](https://github.com/<your-username>) · [LinkedIn](https://linkedin.com/in/<your-handle>)
+
+---
+
 <div align="center">
 
 **Evidence-first · Confidence-aware · Privacy-conscious**
