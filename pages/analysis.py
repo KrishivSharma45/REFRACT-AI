@@ -3,14 +3,13 @@ import flet as ft
 
 from components.ui import (
     text, mono, section_header, primary_button, ghost_button, toast,
-    ambient_background, animated_grid_background, grid_background, create_navbar, hairline, chip,
-    BG, BG_CARD, BG_SURFACE, BG_ELEVATED, BG_INPUT,
-    CYAN, CYAN_LIGHT, CYAN_MUTED, CYAN_GLOW,
-    CYAN,
-    TEXT_PRIMARY, TEXT_HEADING, TEXT_BODY, TEXT_SECONDARY, TEXT_MUTED, TEXT_DIM,
-    BORDER, BORDER_CARD, BORDER_ACCENT, BORDER_ACCENT,
+    animated_grid_background, grid_background, create_navbar, hairline, chip,
+    BG_CARD, BG_SURFACE, BG_ELEVATED, BG_INPUT,
+    CYAN, CYAN_LIGHT, CYAN_GLOW,
+    TEXT_PRIMARY, TEXT_HEADING, TEXT_SECONDARY, TEXT_MUTED, TEXT_DIM,
+    BORDER, BORDER_CARD, BORDER_ACCENT,
     SUCCESS, ERROR,
-    ANIM_FAST, ANIM_NORMAL, ANIM_REVEAL,
+    ANIM_FAST, ANIM_REVEAL,
     RADIUS_SM, RADIUS_MD, RADIUS_LG, PAGE_PAD, SECTION_GAP,
 )
 
@@ -71,7 +70,19 @@ def show_analysis(
             page.update()
 
         except Exception as error:
-            toast(page, f"Could not select file: {error}", error=True)
+            # A long-lived hot-reloaded session can leave the file picker's
+            # client-side binding orphaned (a Flet/Flutter bridge quirk, not
+            # a REFRACT bug) — surfaces as a timeout with no useful cause.
+            # Give a clear, actionable message instead of the raw exception.
+            if "timeout" in str(error).lower() or "listener" in str(error).lower():
+                toast(
+                    page,
+                    "File dialog didn't respond. Please restart REFRACT "
+                    "(close and re-run the app) and try again.",
+                    error=True,
+                )
+            else:
+                toast(page, f"Could not select file: {error}", error=True)
 
     def make_button(file_type):
         b = ft.Container(
