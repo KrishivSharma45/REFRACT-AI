@@ -1,0 +1,15 @@
+# Normalize line endings so Windows editors/tools don't turn untouched
+# files into full-file diffs just by re-saving them with CRLF.
+* text=auto eol=lf
+
+*.py text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.txt text eol=lf
+*.ps1 text eol=crlf
+
+# Binary assets — never touch line endings.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.ico binary
