@@ -27,3 +27,14 @@ Thumbs.db
 # REFRACT local analysis history — personal data generated at runtime,
 # not project source. Delete this line if you'd rather ship sample history.
 refract_history.json
+
+# Scratch/debug scripts used during development sessions — never project
+# source, never worth committing.
+_dbg.py
+_scratch*.py
+_shot.ps1
+_serve.py
+_web.log
+_serve.log
+_serve.out
+_serve.err
