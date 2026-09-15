@@ -3,16 +3,16 @@ import flet as ft
 
 from components.ui import (
     text, mono, section_header, ghost_button, primary_button,
-    ambient_background, animated_grid_background, grid_background, create_navbar, hairline, chip,
+    animated_grid_background, grid_background, create_navbar, hairline, chip,
     delta_badge, metric, panel,
-    BG, BG_CARD, BG_SURFACE, BG_ELEVATED,
-    CYAN, CYAN_LIGHT, CYAN_MUTED, CYAN_DIM, CYAN_GLOW,
-    PURPLE, PURPLE_LIGHT, PURPLE_MUTED, PURPLE_DIM, PURPLE_GLOW,
-    TEXT_PRIMARY, TEXT_HEADING, TEXT_BODY, TEXT_SECONDARY, TEXT_MUTED, TEXT_DIM,
+    BG_CARD, BG_SURFACE, BG_ELEVATED,
+    CYAN, CYAN_LIGHT, CYAN_GLOW,
+    PURPLE, PURPLE_LIGHT, PURPLE_DIM, PURPLE_GLOW,
+    TEXT_PRIMARY, TEXT_BODY, TEXT_SECONDARY, TEXT_MUTED, TEXT_DIM,
     BORDER, BORDER_CARD, BORDER_ACCENT,
     SUCCESS, ERROR, WARN,
-    ANIM_FAST, ANIM_NORMAL, ANIM_REVEAL,
-    RADIUS_SM, RADIUS_MD, RADIUS_LG, PAGE_PAD, SECTION_GAP,
+    ANIM_NORMAL, ANIM_REVEAL,
+    RADIUS_LG, PAGE_PAD, SECTION_GAP,
 )
 from components.graph import build_evidence_graph
 
