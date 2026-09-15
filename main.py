@@ -24,7 +24,10 @@ def _read_picked_file(picked):
         with tempfile.NamedTemporaryFile(delete=False, suffix=suffix) as tmp:
             tmp.write(data)
             tmp_path = tmp.name
-        return extract_text(tmp_path)
+        try:
+            return extract_text(tmp_path)
+        finally:
+            Path(tmp_path).unlink(missing_ok=True)
 
     raise ValueError(
         "Could not read the selected file. If you are running the web build, "
