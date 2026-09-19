@@ -641,6 +641,11 @@ async def show_results_flow(
         async def swap():
             try:
                 await asyncio.sleep(0.12)
+                if state["active"] != i:
+                    # A later click already changed the target section while
+                    # this one was mid-transition — don't clobber it with a
+                    # stale render.
+                    return
                 animated_bars.clear()
                 content_host.content = SECTIONS[i][2]()
                 content_host.opacity = 1
