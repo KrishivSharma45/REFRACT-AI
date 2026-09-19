@@ -1,5 +1,11 @@
-flet
-pypdf
-python-docx
-SpeechRecognition
-PyAudio
+# Pinned to the Flet version REFRACT's UI code is written against.
+# The app uses 0.86.5-specific APIs (page.services, page.show_dialog,
+# flet.canvas.Path, ScrollKey, ft.Colors.with_opacity) that have already
+# changed across Flet releases (e.g. page.snack_bar was removed) — an
+# unpinned or newer flet will break the app in non-obvious ways.
+flet==0.86.5
+
+pypdf>=6.16.2
+python-docx>=1.2.0
+SpeechRecognition>=3.17.0
+PyAudio>=0.2.14
