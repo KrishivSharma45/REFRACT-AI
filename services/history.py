@@ -1,4 +1,6 @@
 import json
+import os
+import tempfile
 from pathlib import Path
 from datetime import datetime
 
@@ -26,17 +28,39 @@ def _load_history():
 
 
 def _save_history(history):
-    with open(
-        HISTORY_FILE,
-        "w",
-        encoding="utf-8",
-    ) as file:
-        json.dump(
-            history,
-            file,
-            indent=2,
-            ensure_ascii=False,
-        )
+    """
+    Write history atomically: build the new file fully on disk, then
+    replace the old one in a single filesystem op. A crash or forced
+    quit mid-write (this app gets killed/restarted a lot during
+    development) can otherwise leave a truncated, unreadable
+    refract_history.json — which _load_history() then silently treats
+    as empty, discarding the user's whole analysis history.
+    """
+
+    HISTORY_FILE.parent.mkdir(parents=True, exist_ok=True)
+
+    fd, tmp_path = tempfile.mkstemp(
+        dir=HISTORY_FILE.parent,
+        prefix=".refract_history_",
+        suffix=".tmp",
+    )
+
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8") as file:
+            json.dump(
+                history,
+                file,
+                indent=2,
+                ensure_ascii=False,
+            )
+
+        os.replace(tmp_path, HISTORY_FILE)
+
+    finally:
+        # os.replace already removed it on success; this only cleans up
+        # a leftover temp file if the write/replace above failed.
+        if os.path.exists(tmp_path):
+            os.unlink(tmp_path)
 
 
 def save_analysis(result):
